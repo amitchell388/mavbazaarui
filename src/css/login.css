@@ -1,0 +1,35 @@
+
+
+#main_div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+
+    height: 100vh;
+    width: 100%;
+}
+
+.login-buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    
+
+}
+
+.login-button-but{
+    width: 400px;
+    height: 60px;
+    
+    border-radius: 14px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.big-words{
+    font-size: 4rem;
+    font-weight: bold;
+}
