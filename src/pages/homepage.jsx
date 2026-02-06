@@ -12,7 +12,7 @@ function Homepage(){
             <h1>Homepage</h1>
 
             <button onClick={() => navigate("/") }>
-                Go to Login
+                Go to ugly ass Login
             </button>
         </>
     )
