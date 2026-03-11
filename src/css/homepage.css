@@ -1,0 +1,136 @@
+
+
+
+#body_div{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;  
+
+
+    height: 100vh;
+    width: 100%;
+}
+
+.big-words{
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-between; */
+    width: 100%;
+    padding: 5px;
+    background-color:#d8dbe8;
+}
+
+.sub-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px;
+    background-color:#d8dbe8;
+
+}
+
+
+
+.search_bar{
+    width: 50%;
+    height: 30px;
+
+    padding: 7.5px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-left: 200px;
+    margin-right: 175px;
+}
+
+.newpost-button{
+    width: 125px;
+    height: 40px;
+
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: orange; 
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 40px;
+}
+
+.myListing-button{
+    width: 125px;
+    height: 40px;
+
+    border-radius: 20px;
+    font-size: 1rem;
+    /* font-weight: bold; */
+    /* background-color: #4CAF50;  */
+    color: blue;
+    border-color: blue;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.listing{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 23%;
+    height: 50%;
+    /* padding: 10px; */
+    background-color:gray;
+    margin-top: 25px;
+    margin-right: 25px;
+    border-radius: 20px;
+
+}
+
+.listing-image{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 95.5%;
+    height: 100%;
+    padding: 10px;
+    background-image: linear-gradient(135deg, rgb(88, 20, 247), rgb(90, 0, 90));
+    border-radius: 20px 20px 0 0;
+}
+
+.listing-header{
+    /* display: flex;
+    flex-direction: column;
+    align-items: flex-start; */
+    padding-left: 10px;
+    font-size: 10px;
+    line-height: .1%;
+}
+
+.listing-title{
+    padding-left: 10px;
+    font-size: 25px;
+    line-height: .1%;
+}
+
+.listing-description{
+    padding-left: 10px;
+    font-size: 15px;
+    /* line-height: .1%; */
+}
+
+.listing-price{
+    padding-left: 10px;
+    font-size: 25px;
+    line-height: .1%;
+}
+

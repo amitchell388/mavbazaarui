@@ -4,6 +4,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import Homepage from './pages/homepage.jsx'
+import NewPostModal from './pages/newpostmodal.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -12,6 +13,7 @@ createRoot(document.getElementById('root')).render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path='/home' element={<Homepage />} />
+      <Route path='/newpost' element={<NewPostModal isOpen={true} onClose={() => {}} />} /> 
     </Routes>  
     </BrowserRouter> 
   </StrictMode>,
