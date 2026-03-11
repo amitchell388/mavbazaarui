@@ -1,3 +1,5 @@
+import { UserProvider } from "./UserContext";
+
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
@@ -8,13 +10,16 @@ import NewPostModal from './pages/newpostmodal.jsx'
 
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path='/home' element={<Homepage />} />
-      <Route path='/newpost' element={<NewPostModal isOpen={true} onClose={() => {}} />} /> 
-    </Routes>  
-    </BrowserRouter> 
-  </StrictMode>,
+  <UserProvider>
+      <StrictMode>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path='/home' element={<Homepage />} />
+        <Route path='/newpost' element={<NewPostModal isOpen={true} onClose={() => {}} />} /> 
+      </Routes>  
+      </BrowserRouter> 
+    </StrictMode>
+  </UserProvider>
+
 )

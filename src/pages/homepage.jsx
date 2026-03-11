@@ -1,5 +1,9 @@
 import { useNavigate } from 'react-router-dom'
+
 import { useState } from 'react'
+
+import { useUser } from "../UserContext.jsx";
+
 import '../css/homepage.css'
 import NewPostModal from './newpostmodal'
 
@@ -8,7 +12,11 @@ import NewPostModal from './newpostmodal'
 
 
 function Homepage(){
+    const { user } = useUser(); // use this to access user data in this component
+
+
     const navigate = useNavigate();
+
 
 
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -27,6 +35,7 @@ function Homepage(){
                 </span>
             </div>
             <input className='search_bar' type="text" placeholder='Search for textbooks, electronics, and more...'/>
+
 
             <div>
 
@@ -57,7 +66,7 @@ function Homepage(){
         <body>
             <div id='body_div'> 
 
-                //this is just a placeholder for the listing component, will be mapped over with the listing data from the backend
+                {/* this is just a placeholder for the listing component, will be mapped over with the listing data from the backend */}
                 <div className='listing'>
                     <div className='listing-image'>
                         <img src='' alt='listing image'/>  
