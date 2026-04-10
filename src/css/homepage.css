@@ -1,17 +1,19 @@
 
 
-
-#body_div{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-around;  
-
-
-    height: 100vh;
+.main_body_sec{
+    background-color: #1c1c1d;
     width: 100%;
+    height: 100vh;
+
+
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
+
+
 
 .big-words{
     font-size: 1.75rem;
@@ -24,7 +26,7 @@
     align-items: center;
     /* justify-content: space-between; */
     width: 100%;
-    padding: 5px;
+    
     background-color:#d8dbe8;
 }
 
@@ -34,7 +36,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 5px;
+    
     background-color:#d8dbe8;
 
 }
