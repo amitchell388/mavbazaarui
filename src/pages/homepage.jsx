@@ -1,19 +1,53 @@
 import { useNavigate } from 'react-router-dom'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react';  
 
 import { useUser } from "../UserContext.jsx";
 
-import '../css/homepage.css'
-import NewPostModal from './newpostmodal'
+import '../css/homepage.css';
+import NewPostModal from './newpostmodal';
+import ListingObj from '../objects/listing_obj.jsx';
+
+
 
 
 
 
 
 function Homepage(){
-    const { user } = useUser(); // use this to access user data in this component
+    const { user } = useUser(); 
+    
+    const [listings, setListings] = useState([
+    ]);
+    
+    
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
+    
+    useEffect(() => {
+        if (user) {
+            fetch_listings();
+        }
+    }, [user]);  
+
+    async function fetch_listings() {
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await fetch('https://insy-project.onrender.com/fetch_listings/');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            setListings(prevListings => [...prevListings, ...data.Listings]);
+        } catch (error) {
+            console.error('Error fetching listings:', error);
+            setError('Failed to load listings. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    }
 
     const navigate = useNavigate();
     
@@ -21,27 +55,29 @@ function Homepage(){
 
     const [isModalOpen, setIsModalOpen] = useState(false)
 
+
     return (
         <>
-        <header className='header'>
-            <div>
-                <span className='big-words'>
-                    <span style={{ color: '#1173d4' }} >
-                        MAV
+        
+            <header className='header'>
+                <div>
+                    <span className='big-words'>
+                        <span style={{ color: '#1173d4' }} >
+                            MAV
+                        </span>
+                        <span style={{ color: '#f97a1f' }} >
+                            BAZZAR
+                        </span>
                     </span>
-                    <span style={{ color: '#f97a1f' }} >
-                        BAZZAR
-                    </span>
-                </span>
-            </div>
-            <input className='search_bar' type="text" placeholder='Search for textbooks, electronics, and more...'/>
+                </div>
+                <input className='search_bar' type="text" placeholder='Search for textbooks, electronics, and more...'/>
 
 
-            <div>
+                <div>
 
                 <span>
                     <span >
-                        <button className='myListing-button' onClick={() => navigate('/my-listings')}>My Listings</button>
+                        <button className='myListing-button'>My Listings</button>
                     </span>
                     <span> 
                         <button className='newpost-button' onClick={() => setIsModalOpen(true)}>
@@ -52,27 +88,19 @@ function Homepage(){
             </div>
             
 
+                
             
-           
-            <button onClick={() => navigate("/") }>
-                Logout
-            </button>
+                <button onClick={() => navigate("/") }>
+                    Logout
+                </button>
 
-        </header>
-        <header className='sub-header'>
-            <h1 style={{color: 'black'}}>What are you looking for?</h1>
-        </header>
+            </header>
+            <header className='sub-header'>
+                <h1 style={{color: 'black'}}>What are you looking for?</h1>
+            </header>
 
         <body>
             <div id='body_div'> 
-
-                {/* show signed-in user info */}
-                {user && (
-                    <div className='user-info'>
-                        <p style={{ margin: 0, fontWeight: 600 }}>Hello, {user.name}</p>
-                        <p style={{ margin: 0, color: '#666' }}>{user.email}</p>
-                    </div>
-                )}
 
                 {/* this is just a placeholder for the listing component, will be mapped over with the listing data from the backend */}
                 <div className='listing'>
@@ -95,13 +123,17 @@ function Homepage(){
 
 
             </div>
-        </body>
 
-        
-        <NewPostModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
+            
+            <NewPostModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
         </>
     )
 }
 
 export default Homepage;
+
+
+
+
