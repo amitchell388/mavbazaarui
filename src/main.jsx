@@ -7,6 +7,7 @@ import './index.css'
 import App from './App.jsx'
 import Homepage from './pages/homepage.jsx'
 import NewPostModal from './pages/newpostmodal.jsx'
+import ListingPage from './pages/listingpage.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -17,6 +18,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />} />
         <Route path='/home' element={<Homepage />} />
         <Route path='/newpost' element={<NewPostModal isOpen={true} onClose={() => {}} />} /> 
+        <Route path='/my-listings' element={<ListingPage />} />
       </Routes>  
       </BrowserRouter> 
     </StrictMode>

@@ -16,7 +16,7 @@ function Homepage(){
 
 
     const navigate = useNavigate();
-
+    
 
 
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -41,7 +41,7 @@ function Homepage(){
 
                 <span>
                     <span >
-                        <button className='myListing-button'>My Listings</button>
+                        <button className='myListing-button' onClick={() => navigate('/my-listings')}>My Listings</button>
                     </span>
                     <span> 
                         <button className='newpost-button' onClick={() => setIsModalOpen(true)}>
@@ -65,6 +65,14 @@ function Homepage(){
 
         <body>
             <div id='body_div'> 
+
+                {/* show signed-in user info */}
+                {user && (
+                    <div className='user-info'>
+                        <p style={{ margin: 0, fontWeight: 600 }}>Hello, {user.name}</p>
+                        <p style={{ margin: 0, color: '#666' }}>{user.email}</p>
+                    </div>
+                )}
 
                 {/* this is just a placeholder for the listing component, will be mapped over with the listing data from the backend */}
                 <div className='listing'>
