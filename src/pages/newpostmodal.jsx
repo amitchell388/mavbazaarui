@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import '../css/newpost.css'
 import { useUser } from "../UserContext.jsx";
 
@@ -11,10 +11,25 @@ function NewPostModal({ isOpen, onClose }) {
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [image, setImage] = useState(null);
+    const fileInputRef = useRef(null);
+
+    function resetForm() {
+        setTitle("");
+        setCategory("");
+        setDescription("");
+        setPrice("");
+        setImage(null);
+        if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+        }
+    }
 
     useEffect(() => {
         if (isOpen) document.body.classList.add('modal-open')
-        else document.body.classList.remove('modal-open')
+        else {
+            document.body.classList.remove('modal-open')
+            resetForm();
+        }
         return () => document.body.classList.remove('modal-open')
     }, [isOpen])
 
@@ -32,13 +47,14 @@ function NewPostModal({ isOpen, onClose }) {
             const categoryStr = String(category);
             const descriptionStr = String(description);
 
-            const url = `https://insy-project.onrender.com/post_listing/${encodeURIComponent(userId)}/${encodeURIComponent(titleStr)}/${encodeURIComponent(categoryStr)}/${encodeURIComponent(priceStr)}/${encodeURIComponent(descriptionStr)}`;
+            console.log("Submitting post with data:", { userId, titleStr, categoryStr, priceStr, descriptionStr, image });
+            const response = await fetch('https://insy-project.onrender.com/post_listing/' + userId + '/' + titleStr + '/' + categoryStr + '/' + priceStr + '/' + descriptionStr);
 
-            const response = await fetch(url);
-                
-            if(!response.ok){
+            if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+
+            
 
 
 
@@ -50,6 +66,7 @@ function NewPostModal({ isOpen, onClose }) {
 
 
         
+resetForm();
         onClose();
     }
 
@@ -66,12 +83,12 @@ function NewPostModal({ isOpen, onClose }) {
                     <form className="post-form" onSubmit={handleSubmit}>
                         <label>
                             Title
-                            <input value={title} onChange={e => setTitle(e.target.value)} required />
+                            <input className='input_in' value={title} onChange={e => setTitle(e.target.value)} required />
                         </label>
 
                         <label>
                             Category
-                            <select value={category} onChange={e => setCategory(e.target.value)} required>
+                            <select className='cat_pick' value={category} onChange={e => setCategory(e.target.value)} required>
                                 <option value="">Select category</option>
                                 <option value="textbooks">Textbooks</option>
                                 <option value="electronics">Electronics</option>
@@ -83,22 +100,24 @@ function NewPostModal({ isOpen, onClose }) {
 
                         <label>
                             Description
-                            <textarea value={description} onChange={e => setDescription(e.target.value)} rows={4} />
+                            <textarea className='input_in' value={description} onChange={e => setDescription(e.target.value)} rows={4} />
                         </label>
 
                         <label>
                             Price (USD)
-                            <input type="number" value={price} onChange={e => setPrice(e.target.value)} min="0" step="0.01" />
+                            <input className='input_in' type="number" value={price} onChange={e => setPrice(e.target.value)} min="0" step="0.01" />
                         </label>
 
                         <label className="file-label">
                             Image
-                            <input type="file" accept="image/*" onChange={handleImageChange} />
+                            <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageChange} />
                         </label>
 
                         <div className="form-actions">
                             <button type="button" className="cancel" onClick={onClose}>Cancel</button>
                             <button type="submit" className="submit">Add Post</button>
+      
+   
                         </div>
                     </form>
                 </div>

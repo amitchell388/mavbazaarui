@@ -57,7 +57,7 @@ function ListingPage() {
             </header>
 
             <div className='sub-header'>
-                <h1 style={{ color: 'black' }}>All Listings</h1>
+                <h1 style={{ color: 'black' }}>Your Listings</h1>
             </div>
 
             <div className='main_body_sec'>
@@ -72,6 +72,7 @@ function ListingPage() {
                         title={listing.title}
                         category={listing.category}
                         img_url={listing.img}
+                        id={listing.id}
                     />
                 ))}
             </div>
