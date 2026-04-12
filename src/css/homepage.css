@@ -136,3 +136,39 @@
     line-height: .1%;
 }
 
+.sort-container{
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    background-color: #d8dbe8;
+    padding: 10px 20px;
+}
+
+.sort-label{
+    color: black;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.sort-button{
+    padding: 8px 15px;
+    background-color: #f0f0f0;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.sort-button:hover{
+    background-color: #e0e0e0;
+}
+
+.sort-button.active{
+    background-color: #1173d4;
+    color: white;
+}
+

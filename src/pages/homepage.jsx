@@ -20,7 +20,7 @@ function Homepage(){
     const [listings, setListings] = useState([
     ]);
     
-    
+    const [sortBy, setSortBy] = useState('newest');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -51,9 +51,23 @@ function Homepage(){
 
     const navigate = useNavigate();
     
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-
-    const [isModalOpen, setIsModalOpen] = useState(false)
+    function getSortedListings() {
+        const sorted = [...listings];
+        
+        switch(sortBy) {
+            case 'price-low':
+                return sorted.sort((a, b) => (a.price || 0) - (b.price || 0));
+            case 'price-high':
+                return sorted.sort((a, b) => (b.price || 0) - (a.price || 0));
+            case 'category':
+                return sorted.sort((a, b) => (a.category || '').localeCompare(b.category || ''));
+            case 'newest':
+            default:
+                return sorted;
+        }
+    }
 
 
     return (
@@ -76,7 +90,7 @@ function Homepage(){
 
                 <span>
                     <span >
-                        <button className='myListing-button' /*onClick={() => navigate('/my-listings')}*/>My Listings</button>
+                        <button className='myListing-button' onClick={() => navigate('/listings')}>My Listings</button>
                     </span>
                     <span> 
                         <button className='newpost-button' onClick={() => setIsModalOpen(true)}>
@@ -97,10 +111,38 @@ function Homepage(){
                 <h1 style={{color: 'black'}}>What are you looking for?</h1>
             </header>
 
+            <div className='sort-container'>
+                <span className='sort-label'>Sort by:</span>
+                <button 
+                    onClick={() => setSortBy('newest')}
+                    className={`sort-button ${sortBy === 'newest' ? 'active' : ''}`}
+                >
+                    Newest
+                </button>
+                <button 
+                    onClick={() => setSortBy('price-low')}
+                    className={`sort-button ${sortBy === 'price-low' ? 'active' : ''}`}
+                >
+                    Price: Low to High
+                </button>
+                <button 
+                    onClick={() => setSortBy('price-high')}
+                    className={`sort-button ${sortBy === 'price-high' ? 'active' : ''}`}
+                >
+                    Price: High to Low
+                </button>
+                <button 
+                    onClick={() => setSortBy('category')}
+                    className={`sort-button ${sortBy === 'category' ? 'active' : ''}`}
+                >
+                    Category
+                </button>
+            </div>
+
             <div className='main_body_sec'>
                 {loading && <p>Loading listings...</p>}
                 {error && <p style={{color: 'red'}}>{error}</p>}
-                {listings.map((listing, index) => (
+                {getSortedListings().map((listing, index) => (
                     <ListingObj
                         key={index}
                         price={listing.price}
