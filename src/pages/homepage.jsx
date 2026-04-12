@@ -81,12 +81,20 @@ function Homepage(){
                     <span style={{ color: '#f97a1f' }} >
                         BAZZAR
                     </span>
+                    {user?.email === 'acm7363@mavs.uta.edu' && (
+                        <span>
+                            <button className='notification-button' onClick={() => alert('No new notifications.')}>
+                                Notifications
+                            </button>
+                        </span>
+                    )}
             </div>
 
 
             <div>
-
+                    
                 <span>
+                    
                     <span >
                         <button className='myListing-button' onClick={() => navigate('/listings')}>My Listings</button>
                     </span>
@@ -95,6 +103,7 @@ function Homepage(){
                             + List Item
                         </button> 
                     </span>
+                    
                 </span>
             </div>
                 
@@ -120,23 +129,11 @@ function Homepage(){
                 >
                     Newest
                 </button>
-                <button 
-                    onClick={() => setSortBy('price-low')}
-                    className={`sort-button ${sortBy === 'price-low' ? 'active' : ''}`}
-                >
-                    Price: Low to High
+                <button onClick={() => setSortBy('price-low')} className={`sort-button ${sortBy === 'price-low' ? 'active' : ''}`}>Price: Low to High
                 </button>
-                <button 
-                    onClick={() => setSortBy('price-high')}
-                    className={`sort-button ${sortBy === 'price-high' ? 'active' : ''}`}
-                >
-                    Price: High to Low
+                <button onClick={() => setSortBy('price-high')} className={`sort-button ${sortBy === 'price-high' ? 'active' : ''}`}>Price: High to Low
                 </button>
-                <button 
-                    onClick={() => setSortBy('category')}
-                    className={`sort-button ${sortBy === 'category' ? 'active' : ''}`}
-                >
-                    Category
+                <button onClick={() => setSortBy('category')} className={`sort-button ${sortBy === 'category' ? 'active' : ''}`}>Category
                 </button>
             </div>
 
@@ -153,6 +150,7 @@ function Homepage(){
                         id={listing.id}
                     />
                 ))}
+                
             </div>
 
 

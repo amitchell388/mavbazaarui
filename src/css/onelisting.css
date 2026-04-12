@@ -132,7 +132,14 @@
     font-size: 2rem;
     font-weight: bold;
 
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
+.act_button:hover{
+    background-color: #e55a0f;
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
 }
 
 .act_button:nth-child(2){
@@ -140,6 +147,12 @@
 
     border: solid #0164a4 3px;
     color: #0164a4;
+}
+
+.act_button:nth-child(2):hover{
+    background-color: #0164a4;
+    color: white;
+    border-color: #0164a4;
 }
 
 .cond_bod{
