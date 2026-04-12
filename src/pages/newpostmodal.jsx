@@ -48,7 +48,7 @@ function NewPostModal({ isOpen, onClose }) {
                     <form className="post-form" onSubmit={handleSubmit}>
                         <label>
                             Title
-                            {/* <input value={title} onChange={e => setTitle(e.target.value)} required /> */}
+                            <input value={title} onChange={e => setTitle(e.target.value)} required />
                         </label>
 
                         <label>
@@ -65,12 +65,12 @@ function NewPostModal({ isOpen, onClose }) {
 
                         <label>
                             Description
-                            {/* <textarea value={description} onChange={e => setDescription(e.target.value)} rows={4} /> */}
+                            <textarea value={description} onChange={e => setDescription(e.target.value)} rows={4} />
                         </label>
 
                         <label>
                             Price (USD)
-                            {/* <input type="number" value={price} onChange={e => setPrice(e.target.value)} min="0" step="0.01" /> */}
+                            <input type="number" value={price} onChange={e => setPrice(e.target.value)} min="0" step="0.01" />
                         </label>
 
                         <label className="file-label">

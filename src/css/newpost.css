@@ -99,8 +99,3 @@
     border-radius: 8px;
     cursor: pointer;
 }
-
-/* small screens */
-@media (max-width: 480px) {
-    .modal-content { padding: 16px; border-radius: 8px; }
-}

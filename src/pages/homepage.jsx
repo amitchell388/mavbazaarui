@@ -57,27 +57,26 @@ function Homepage(){
 
 
     return (
-        <>
-        
-            <header className='header'>
-                <div>
-                    <span className='big-words'>
-                        <span style={{ color: '#1173d4' }} >
-                            MAV
-                        </span>
-                        <span style={{ color: '#f97a1f' }} >
-                            BAZZAR
-                        </span>
+        <div>
+        <header className='header'>
+            <div>
+                <span className='big-words'>
+                    <span style={{ color: '#1173d4' }} >
+                        MAV
                     </span>
-                </div>
-                <input className='search_bar' type="text" placeholder='Search for textbooks, electronics, and more...'/>
+                    <span style={{ color: '#f97a1f' }} >
+                        BAZZAR
+                    </span>
+                </span>
+            </div>
+            <input className='search_bar' type="text" placeholder='Search for textbooks, electronics, and more...'/>
 
 
-                <div>
+            <div>
 
                 <span>
                     <span >
-                        <button className='myListing-button'>My Listings</button>
+                        <button className='myListing-button' /*onClick={() => navigate('/my-listings')}*/>My Listings</button>
                     </span>
                     <span> 
                         <button className='newpost-button' onClick={() => setIsModalOpen(true)}>
@@ -86,10 +85,9 @@ function Homepage(){
                     </span>
                 </span>
             </div>
-            
+                
 
                 
-            
                 <button onClick={() => navigate("/") }>
                     Logout
                 </button>
@@ -99,37 +97,26 @@ function Homepage(){
                 <h1 style={{color: 'black'}}>What are you looking for?</h1>
             </header>
 
-        <body>
-            <div id='body_div'> 
-
-                {/* this is just a placeholder for the listing component, will be mapped over with the listing data from the backend */}
-                <div className='listing'>
-                    <div className='listing-image'>
-                        <img src='' alt='listing image'/>  
-                    </div>
-                    <div className='listing-header'>
-                        <h2>Category</h2> 
-                    </div>
-                    <div className='listing-title'>
-                        <p>Item Name</p>
-                    </div>
-                    <div className='listing-description'>
-                        <p>item description</p>
-                    </div>
-                    <div className='listing-price'>
-                        <p>item price</p> 
-                    </div> 
-                </div>
-
-
+            <div className='main_body_sec'>
+                {loading && <p>Loading listings...</p>}
+                {error && <p style={{color: 'red'}}>{error}</p>}
+                {listings.map((listing, index) => (
+                    <ListingObj
+                        key={index}
+                        price={listing.price}
+                        title={listing.title}
+                        category={listing.category}
+                        img_url={listing.img}
+                    />
+                ))}
             </div>
 
 
             
             <NewPostModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
-        </>
-    )
+        </div>
+    );
 }
 
 export default Homepage;
