@@ -19,6 +19,7 @@
 .listing_card:hover{
     transform: translateY(-5px);
     transition: transform 0.2s ease-in-out;
+    cursor: pointer;
 }
 .listing_img{
     border-radius: 15px 15px 0 0;

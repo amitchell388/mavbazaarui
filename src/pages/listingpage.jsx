@@ -44,17 +44,10 @@ function ListingPage() {
 
     return (
         <div>
-            <header className='header'>
-                <div>
-                    <span className='big-words'>
-                        <span style={{ color: '#1173d4' }}>MAV</span>
-                        <span style={{ color: '#f97a1f' }}>BAZZAR</span>
-                    </span>
-                </div>
-                <button onClick={() => navigate('/home')} style={{ padding: '10px 20px', cursor: 'pointer' }}>
-                    Back to Home
-                </button>
-            </header>
+            <div className='header_listing'>
+                <button className='head_button' onClick={() => window.history.back()}> {"<-"} Back to Market</button>
+
+            </div>
 
             <div className='sub-header'>
                 <h1 style={{ color: 'black' }}>Your Listings</h1>
