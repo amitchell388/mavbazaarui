@@ -49,8 +49,8 @@ function ListingPage() {
 
             </div>
 
-            <div className='sub-header'>
-                <h1 style={{ color: 'black' }}>Your Listings</h1>
+            <div className='sub-header_two'>
+                <h1 >Your Listings</h1>
             </div>
 
             <div className='main_body_sec'>

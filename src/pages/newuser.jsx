@@ -7,9 +7,10 @@ function NewUser() {
         const email = document.getElementById("login_field_email").value;
         const password = document.getElementById("login_field_password").value;
         const confirmPassword = document.getElementById("login_field_confirm").value;
+        const username = document.getElementById("login_field_username").value;
 
 
-        if (!email || !password || !confirmPassword) {
+        if (!email || !password || !confirmPassword || !username) {
             window.alert("Please fill in all fields.");
             return;
         }
@@ -25,7 +26,7 @@ function NewUser() {
         }
 
         try{
-            const response = await fetch('https://insy-project.onrender.com/login/' + email + '/' + password, );
+            const response = await fetch('https://insy-project.onrender.com/login/' + email + '/' + passwordgasd, );
             const data = await response.json();
             
             if ( data["Message"] == "User not verified yet"){
@@ -58,6 +59,7 @@ function NewUser() {
                 </h1>
 
                 <div className='main_input_bod'>
+                    <input className='input_main' id="login_field_username" type="text" placeholder="Username" />
                     <input className='input_main' id="login_field_email" type="email" placeholder="Email" />
                     <input className='input_main' id="login_field_password" type="password" placeholder="Password" />
                     <input className='input_main' id="login_field_confirm" type="password" placeholder="Confirm Password" />
