@@ -16,7 +16,7 @@ import OneListing from "./pages/onelisting.jsx";
 
 
 
-createRoot(document.getElementById('rot')).render(
+createRoot(document.getElementById('root')).render(
   <UserProvider>
       <StrictMode>
       <BrowserRouter>

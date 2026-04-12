@@ -150,6 +150,23 @@
     line-height: .1%;
 }
 
+.notification-button{
+    width: 120px;
+    height: 40px;
+    border-radius: 20px;
+    font-size: 1rem;
+    /* font-weight: bold; */
+    background-color: #f76518;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.notification-button:hover{
+    background-color: #0e5ab8;
+}
+
 .sort-header{
     display: flex;
     justify-content: flex-start;
