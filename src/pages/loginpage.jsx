@@ -22,7 +22,8 @@ function LoginPage() {
                 email: data.email,
                 admin: data.admin,
                 listings: data.listings,
-                id: data.id
+                id: data.id,
+                username: data.username
             })
 
         })

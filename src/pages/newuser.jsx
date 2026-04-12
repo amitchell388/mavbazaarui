@@ -26,7 +26,7 @@ function NewUser() {
         }
 
         try{
-            const response = await fetch('https://insy-project.onrender.com/login/' + email + '/' + passwordgasd, );
+            const response = await fetch('https://insy-project.onrender.com/login/' + email + '/' + password + '/' + username, );
             const data = await response.json();
             
             if ( data["Message"] == "User not verified yet"){
