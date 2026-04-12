@@ -22,19 +22,37 @@ function NewPostModal({ isOpen, onClose }) {
         setImage(e.target.files?.[0] ?? null);
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-        const post = {
-            title,
-            category,
-            description,
-            price,
-            owner: user?.email || null,
-        };
-        console.log('Submitting new post:', post, 'image=', image);
+
+        try{
+            const userId = String(user?.id);
+            const priceStr = String(price);
+            const titleStr = String(title);
+            const categoryStr = String(category);
+            const descriptionStr = String(description);
+
+            const url = `https://insy-project.onrender.com/post_listing/${encodeURIComponent(userId)}/${encodeURIComponent(titleStr)}/${encodeURIComponent(categoryStr)}/${encodeURIComponent(priceStr)}/${encodeURIComponent(descriptionStr)}`;
+
+            const response = await fetch(url);
+                
+            if(!response.ok){
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+
+
+        }
+        catch(error){
+            console.error('Error submitting post:', error);
+        }
+            
+
+
         
         onClose();
     }
+
 
     return (
         <div className={`modal ${isOpen ? 'open' : ''}`} aria-hidden={!isOpen}>

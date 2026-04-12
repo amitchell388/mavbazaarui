@@ -81,6 +81,10 @@ function LoginPage() {
         
     }
 
+    function new_user(){
+        navigate("/newuser");
+    }
+
     return (
         <>
         <div id='main_div'>
@@ -105,6 +109,10 @@ function LoginPage() {
 
                 <button className='login-button-but' style={{ backgroundColor: '#f9751e' }} onClick={() => check_login("/home")}>
                     Enter The Bazzar
+                </button>
+
+                <button className='login-button-but' style={{ backgroundColor: '#1173d4' }} onClick={() => new_user()}>
+                    New User
                 </button>
 
             </div>
