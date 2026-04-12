@@ -84,10 +84,13 @@
 }
 
 .form-actions .cancel {
-    background: transparent;
-    border: 1px solid #ccc;
-    padding: 8px 14px;
+    background: white;
+    width: 60px;
+    border: none;
+    outline: none;
+    color: black;
     border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
 
@@ -98,4 +101,28 @@
     padding: 8px 16px;
     border-radius: 8px;
     cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.input_in{
+    height: 50px;
+    border-radius: 10px;
+    background-color: white;
+    border: none;
+    outline: none;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.cat_pick{
+    background-color: white;
+    color: rgb(56, 55, 55);
+    font-weight: bold;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
 }

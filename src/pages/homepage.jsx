@@ -35,12 +35,12 @@ function Homepage(){
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch('https://insy-project.onrender.com/fetch_listings/');
+            const response = await fetch('https://insy-project.onrender.com/fetch_listings/0');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            setListings(prevListings => [...prevListings, ...data.Listings]);
+            setListings(data.Listings);
         } catch (error) {
             console.error('Error fetching listings:', error);
             setError('Failed to load listings. Please try again.');
@@ -73,17 +73,15 @@ function Homepage(){
     return (
         <div>
         <header className='header'>
-            <div>
-                <span className='big-words'>
+            <div className='big-words'>
+  
                     <span style={{ color: '#1173d4' }} >
                         MAV
                     </span>
                     <span style={{ color: '#f97a1f' }} >
                         BAZZAR
                     </span>
-                </span>
             </div>
-            <input className='search_bar' type="text" placeholder='Search for textbooks, electronics, and more...'/>
 
 
             <div>
@@ -102,18 +100,25 @@ function Homepage(){
                 
 
                 
-                <button onClick={() => navigate("/") }>
-                    Logout
+                <button className='logout_but' onClick={() => navigate("/") }>
+                    {"->"}
                 </button>
 
-            </header>
+        </header>
+
             <header className='sub-header'>
                 <h1 style={{color: 'black'}}>What are you looking for?</h1>
+                <input className='search_bar' type="text" placeholder='Search for textbooks, electronics, and more...'/>
+
             </header>
 
-            <div className='sort-header'>
-                <span className='sort-label'>Sort by:</span>
-                <button onClick={() => setSortBy('newest')} className={`sort-button ${sortBy === 'newest' ? 'active' : ''}`}>Newest
+            <div className='sort-container'>
+                <div className='sort-label'>Sort by:</div>
+                <button 
+                    onClick={() => setSortBy('newest')}
+                    className={`sort-button ${sortBy === 'newest' ? 'active' : ''}`}
+                >
+                    Newest
                 </button>
                 <button onClick={() => setSortBy('price-low')} className={`sort-button ${sortBy === 'price-low' ? 'active' : ''}`}>Price: Low to High
                 </button>
@@ -133,6 +138,7 @@ function Homepage(){
                         title={listing.title}
                         category={listing.category}
                         img_url={listing.img}
+                        id={listing.id}
                     />
                 ))}
                 

@@ -12,9 +12,11 @@ import NewUser from "./pages/newuser.jsx";
 
 import ListingPage from './pages/listingpage.jsx'
 
+import OneListing from "./pages/onelisting.jsx";
 
 
-createRoot(document.getElementById('root')).render(
+
+createRoot(document.getElementById('rot')).render(
   <UserProvider>
       <StrictMode>
       <BrowserRouter>
@@ -24,7 +26,8 @@ createRoot(document.getElementById('root')).render(
         <Route path='/listings' element={<ListingPage />} />
         <Route path='/newpost' element={<NewPostModal isOpen={true} onClose={() => {}} />} /> 
         <Route path='/newuser' element={<NewUser />} />
-      </Routes>
+        <Route path='/listing/:id' element={<OneListing />} />
+      </Routes>  
       </BrowserRouter> 
     </StrictMode>
   </UserProvider>
