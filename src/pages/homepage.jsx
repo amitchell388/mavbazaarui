@@ -111,31 +111,15 @@ function Homepage(){
                 <h1 style={{color: 'black'}}>What are you looking for?</h1>
             </header>
 
-            <div className='sort-container'>
+            <div className='sort-header'>
                 <span className='sort-label'>Sort by:</span>
-                <button 
-                    onClick={() => setSortBy('newest')}
-                    className={`sort-button ${sortBy === 'newest' ? 'active' : ''}`}
-                >
-                    Newest
+                <button onClick={() => setSortBy('newest')} className={`sort-button ${sortBy === 'newest' ? 'active' : ''}`}>Newest
                 </button>
-                <button 
-                    onClick={() => setSortBy('price-low')}
-                    className={`sort-button ${sortBy === 'price-low' ? 'active' : ''}`}
-                >
-                    Price: Low to High
+                <button onClick={() => setSortBy('price-low')} className={`sort-button ${sortBy === 'price-low' ? 'active' : ''}`}>Price: Low to High
                 </button>
-                <button 
-                    onClick={() => setSortBy('price-high')}
-                    className={`sort-button ${sortBy === 'price-high' ? 'active' : ''}`}
-                >
-                    Price: High to Low
+                <button onClick={() => setSortBy('price-high')} className={`sort-button ${sortBy === 'price-high' ? 'active' : ''}`}>Price: High to Low
                 </button>
-                <button 
-                    onClick={() => setSortBy('category')}
-                    className={`sort-button ${sortBy === 'category' ? 'active' : ''}`}
-                >
-                    Category
+                <button onClick={() => setSortBy('category')} className={`sort-button ${sortBy === 'category' ? 'active' : ''}`}>Category
                 </button>
             </div>
 
@@ -151,6 +135,7 @@ function Homepage(){
                         img_url={listing.img}
                     />
                 ))}
+                
             </div>
 
 
