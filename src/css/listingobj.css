@@ -35,3 +35,8 @@
     margin: 0;
     font-weight: bold;
 }
+
+
+.hidden{
+    display: none;
+}

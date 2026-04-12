@@ -35,7 +35,7 @@ function Homepage(){
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch('https://insy-project.onrender.com/fetch_listings/');
+            const response = await fetch('https://insy-project.onrender.com/fetch_listings/0');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -149,6 +149,7 @@ function Homepage(){
                         title={listing.title}
                         category={listing.category}
                         img_url={listing.img}
+                        id={listing.id}
                     />
                 ))}
             </div>

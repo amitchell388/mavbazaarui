@@ -1,9 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ListingObj from '../objects/listing_obj.jsx';
 import '../css/homepage.css';
 
+import { useUser } from "../UserContext.jsx";
+
 function ListingPage() {
+
+    const { user } = useUser();
+
+
     const navigate = useNavigate();
     const [listings, setListings] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -17,7 +23,8 @@ function ListingPage() {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch('https://insy-project.onrender.com/fetch_listings/');
+
+            const response = await fetch(`https://insy-project.onrender.com/fetch_listings/${user.id}`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }

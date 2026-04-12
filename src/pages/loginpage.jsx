@@ -17,10 +17,12 @@ function LoginPage() {
                 return window.alert("An error occurred while trying to log in. Please try again later.");
             }
 
+            console.log(data);
             setUser({ // current user data can add more when teme comes just let me know what you need 
                 email: data.email,
                 admin: data.admin,
                 listings: data.listings,
+                id: data.id
             })
 
         })
@@ -56,6 +58,7 @@ function LoginPage() {
                     // will create global user
                     try{
                         create_global_user(email);
+         
                         navigate("/home"); // send them to homw page after makgin gloabl user 
                     }
                     catch (err){
