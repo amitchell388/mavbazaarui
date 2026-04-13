@@ -4,7 +4,7 @@
     background-color: #f8fafb;
     width: 100%;
     min-height: calc(100vh - 280px);
-    padding: 24px 40px;
+    
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 24px;
@@ -189,7 +189,7 @@
     align-items: center;
     width: 100%;
     background-color: #e8eef6;
-    padding: 14px 20px;
+    
     margin-bottom: 10px;
     border-bottom: 1px solid rgba(22, 46, 82, 0.08);
 }
