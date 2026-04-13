@@ -27,25 +27,26 @@ function OneListing() {
             }
 
             const data = await response.json();
-            console.log('Full API Response:', data);
-            console.log('Type of data:', typeof data);
-            console.log('Keys in data:', Object.keys(data));
 
             // Try different possible response structures
             let listing = null;
             if (data.Listings && Array.isArray(data.Listings) && data.Listings.length > 0) {
-                console.log('Found data.Listings array, taking first item:', data.Listings[0]);
                 listing = data.Listings[0];
             } else if (data.listing) {
-                console.log('Found data.listing:', data.listing);
                 listing = data.listing;
             } else if (Array.isArray(data) && data.length > 0) {
-                console.log('Data is array, taking first item:', data[0]);
                 listing = data[0];
             } else {
                 console.log('Data structure:', data);
                 listing = data;
             }
+            
+
+            const responsetwo = await fetch(`https://insy-project.onrender.com/fetch_user_again/${+listing.user}`);
+            const userData = await responsetwo.json();
+    
+            const selleremail = userData.email;
+
 
             if (listing && typeof listing === 'object') {
                 setListingData({
@@ -55,7 +56,7 @@ function OneListing() {
                     img_url: listing.img || listing.img_url,
                     description: listing.desc || 'No description available.',
                     seller_name: listing.name || 'Unknown',
-                    seller_email: listing.email || 'Unknown'
+                    seller_email: selleremail
                 });
             } else {
                 throw new Error('Invalid listing data structure');
@@ -125,7 +126,7 @@ function OneListing() {
                                 </div>
                                 <div className='cond_body_words'>
                                     <p>Category: {listingData.category}</p>
-                                    <p>Seller: {listingData.seller_name || 'Unknown'}</p>
+                                    <p>Seller: {listingData.seller_email || 'Unknown'}</p>
 
                                 </div>
 
