@@ -45,7 +45,10 @@ function Homepage(){
         //clear notifs when clicked 
         if (notifications.length > 0) {
             const notificationDetails = notifications.map((notif, index) => 
-                `${index + 1}. "${notif.title}" from ${notif.sellerEmail}`
+                `${index + 1}. Kevin wants to purchase "${notif.title}"!
+            Buyer name: Kevin M
+            Contact info: klm8158@mavs.uta.edu
+            Phone: N/A `
             ).join('\n');
             alert(`Cleared ${notifications.length} notification(s):\n\n${notificationDetails}`);
             localStorage.setItem('notifications', JSON.stringify([]));
