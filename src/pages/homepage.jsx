@@ -23,13 +23,37 @@ function Homepage(){
     const [sortBy, setSortBy] = useState('newest');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [notifications, setNotifications] = useState([]);
 
     
     useEffect(() => {
         if (user) {
             fetch_listings();
+            loadNotificationCount();
         }
-    }, [user]);  
+    }, [user]);
+
+    function loadNotificationCount() {
+        if (user?.email === 'acm7363@mavs.uta.edu') {
+            const storedNotifications = JSON.parse(localStorage.getItem('notifications') || '[]');
+            setNotifications(storedNotifications);
+        }
+    }
+
+    function handleNotificationClick() {
+
+        //clear notifs when clicked 
+        if (notifications.length > 0) {
+            const notificationDetails = notifications.map((notif, index) => 
+                `${index + 1}. "${notif.title}" from ${notif.sellerEmail}`
+            ).join('\n');
+            alert(`Cleared ${notifications.length} notification(s):\n\n${notificationDetails}`);
+            localStorage.setItem('notifications', JSON.stringify([]));
+            setNotifications([]);
+        } else {
+            alert('No new notifications');
+        }
+    }  
 
     async function fetch_listings() {
         setLoading(true);
@@ -82,9 +106,12 @@ function Homepage(){
                         BAZZAR
                     </span>
                     {user?.email === 'acm7363@mavs.uta.edu' && (
-                        <span>
-                            <button className='notification-button' onClick={() => alert('No new notifications.')}>
+                        <span style={{ position: 'relative' }}>
+                            <button className='notification-button' onClick={handleNotificationClick}>
                                 Notifications
+                                {notifications.length > 0 && (
+                                    <span className="notification-badge">{notifications.length}</span>
+                                )}
                             </button>
                         </span>
                     )}

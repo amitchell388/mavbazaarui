@@ -1,10 +1,12 @@
 
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useUser } from "../UserContext.jsx";
 import '../css/onelisting.css';
 
 function OneListing() {
     const { id } = useParams();
+    const { user } = useUser();
     const [listingData, setListingData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -51,7 +53,9 @@ function OneListing() {
                     title: listing.title,
                     category: listing.category,
                     img_url: listing.img || listing.img_url,
-                    description: listing.desc || 'No description available.'
+                    description: listing.desc || 'No description available.',
+                    seller_name: listing.name || 'Unknown',
+                    seller_email: listing.email || 'Unknown'
                 });
             } else {
                 throw new Error('Invalid listing data structure');
@@ -62,6 +66,26 @@ function OneListing() {
         } finally {
             setLoading(false);
         }
+    }
+
+    function clickBuyNow() {
+        if (!user) {
+            alert('Please log in to purchase items.');
+            return;
+        }
+
+        
+        const currentNotifications = JSON.parse(localStorage.getItem('notifications') || '[]');
+        const newNotification = {
+            title: listingData.title,
+            sellerEmail: listingData.seller_email,
+            
+        };
+        currentNotifications.push(newNotification);
+        localStorage.setItem('notifications', JSON.stringify(currentNotifications));
+
+       
+        alert(`Sent for "${listingData.title}"! The seller will be notified.`);
     }
 
 
@@ -109,7 +133,7 @@ function OneListing() {
                             <hr className='bruh'></hr>
 
                             <div className='buttons'>
-                                <button className='act_button'>Buy Now</button>
+                                <button className='act_button' onClick={clickBuyNow}>Buy Now</button>
                                 <button className='act_button'>Message Seller</button>
                             </div>
                             

@@ -8,14 +8,14 @@ function ListingObj({ price, title, category, img_url, description, seller, id }
         navigate(`/listing/${id}`);
     }
 
-    // Function to truncate description if too long
-    function truncateDescription(text, maxLength = 100) {
+    // shorten 
+    function shortDescription(text, maxLength = 100) {
         if (!text) return 'No description available.';
         if (text.length <= maxLength) return text;
         return text.substring(0, maxLength).trim() + '...';
     }
 
-    function getSellerInitial(name) {
+    function getUserInitial(name) {
         if (!name || typeof name !== 'string') return 'UTA';
         const trimmed = name.trim();
         if (!trimmed) return 'UTA';
@@ -38,10 +38,10 @@ function ListingObj({ price, title, category, img_url, description, seller, id }
             <div className='listing_bod'>
                 <div className='listing_category'>{category || 'Other'}</div>
                 <h3 className='listing_title'>{title || 'Untitled item'}</h3>
-                <p className='listing_description'>{truncateDescription(description)}</p>
+                <p className='listing_description'>{shortDescription(description)}</p>
                 <div className='listing_footer'>
                     <span className='listing_price'>${price || '0'}</span>
-                    <span className='listing_seller'>{getSellerInitial(seller)}</span>
+                    <span className='listing_seller'>{getUserInitial(seller)}</span>
                 </div>
             </div>
         </div>
